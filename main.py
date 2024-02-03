@@ -24,14 +24,14 @@ def list_trash(username: str) -> str:
     files = files_list(address)
     directories = directories_list(address)
     if ls_address != []:
-        for file in files:
-            file = str(file).split('/')
-            print('{}: File'.format(file[-1]))
         for directory in directories:
             directory_name = str(directory).split('/')[-1]
             CONSOLE.print('Directory {} tree:'.format(directory_name), style=YELLOW_BLINK_STYLE)
             sp.run(['tree', directory])
-            CONSOLE.print("\nDirectory Name: {}".format(directory_name), style=YELLOW_STYLE)
+            CONSOLE.print("\nDirectory name: {}".format(directory_name), style=YELLOW_STYLE)
+        for file in files:
+            file_name = str(file).split('/')[-1]
+            CONSOLE.print('File name: {}'.format(file_name), style=YELLOW_STYLE)
         return 'Select empty trash processor to empty your trash...'
     else:
         return cowsay.cow('The trash is already empty...')
@@ -60,6 +60,11 @@ def restore_trash(username: str, new_address: str) -> str:
         file_name = str(file).split('/')[-1]
         sp.run(['mv', file, new_address])
         CONSOLE.print('Restore file {0} to the {1} address'.format(file_name, new_address+file_name), style=YELLOW_STYLE)
+    for directory in directories:
+        directory_name = str(directory).split('/')[-1]
+        sp.run(['mv', directory, new_address])
+        CONSOLE.print('Restore directory {0} to the {1} address'.format(directory_name, new_address+directory_name), style=YELLOW_STYLE)
+    return cowsay.cow('Files restored...')
 
 process = input('Wich process?\n1- list trash\n2- empty trash\n3- restore trash\n:')
 if process == '1' or process == 'list trash':
@@ -68,3 +73,4 @@ elif process == '2' or process == 'empty trash':
     print(empty_trash('richie'))
 elif process == '3' or process == 'restore trash':
     print(restore_trash(username='richie', new_address='/home/richie/Desktop/'))
+
