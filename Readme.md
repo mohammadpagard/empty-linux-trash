@@ -8,9 +8,9 @@
 ## Now choose your process:
 <br>
 <img src="empty-linux-trash.png"></img>
-- 1 OR 'list trash' => List all files and directories in your trash.
-- 2 OR 'empty trash' => Empty all files and directories in the trash.
-- 3 OR 'restore trash' => Restore all files and directories in new address.
+- 1 OR 'list trash' => List all files and directories in your trash<br>
+- 2 OR 'empty trash' => Empty all files and directories in the trash<br>
+- 3 OR 'restore trash' => Restore all files and directories in new address<br>
 
 ## List of all files and directories
 <img src="list_trash.gif"></img>
